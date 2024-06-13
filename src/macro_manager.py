@@ -1,3 +1,5 @@
+import json
+import os
 import threading
 import time
 from pynput.keyboard import Key, Controller as KeyboardController
@@ -5,9 +7,11 @@ from pynput.mouse import Button, Controller as MouseController
 import keyboard  # For global hotkey
 import pygetwindow as gw  # For window management
 
+MACRO_FILE = 'macros.json'
+
 class MacroManager:
     def __init__(self):
-        self.macros = []
+        self.macros = self.load_macros()
         self.keyboard = KeyboardController()
         self.mouse = MouseController()
         self.running_macros = []
@@ -110,3 +114,13 @@ class MacroManager:
         time.sleep(duration / 1000)
         self.mouse.release(mouse_button)
         print(f"Clicked mouse button: {button} for {duration} ms")
+
+    def load_macros(self):
+        if os.path.exists(MACRO_FILE):
+            with open(MACRO_FILE, 'r') as file:
+                return json.load(file)
+        return []
+
+    def save_macros(self):
+        with open(MACRO_FILE, 'w') as file:
+            json.dump(self.macros, file, indent=4)

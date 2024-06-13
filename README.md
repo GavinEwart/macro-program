@@ -10,7 +10,7 @@ This Macro Program allows you to create and manage macros for keyboard and mouse
 - Configure key presses, key releases, mouse clicks, and wait actions.
 - Set conditions like held, unheld, press, release, double, tap, and hold for actions.
 - Select an open program window to run macros.
-- Dark mode UI using `ttkthemes`.
+- Modern dark mode UI using custom styling.
 - Global kill switch using `Ctrl + Shift + Esc` to stop all macros.
 
 ## Requirements
@@ -19,7 +19,7 @@ This Macro Program allows you to create and manage macros for keyboard and mouse
 - `pynput` for keyboard and mouse control.
 - `keyboard` for global hotkey.
 - `pygetwindow` for window management.
-- `ttkthemes` for dark mode UI.
+- `tkinter` for GUI.
 
 ## Installation
 
@@ -72,10 +72,27 @@ This Macro Program allows you to create and manage macros for keyboard and mouse
 
     - Press `Ctrl + Shift + Esc` at any time to stop all macros immediately.
 
-## Notes
+## Packaging for Distribution
 
-- Ensure you have the necessary permissions to control the selected window.
-- Use the global kill switch responsibly to avoid unintended behavior.
+To create an executable file for distribution, you can use PyInstaller. Follow these steps:
+
+1. **Install PyInstaller**:
+
+    ```bash
+    pip install pyinstaller
+    ```
+
+2. **Create the Executable**:
+
+    ```bash
+    pyinstaller --onefile --noconsole src/main.py
+    ```
+
+    The executable will be created in the `dist` directory.
+
+## Troubleshooting
+
+If you encounter issues, ensure all dependencies are installed correctly and the virtual environment is activated.
 
 ## Contributing
 
@@ -88,3 +105,61 @@ This Macro Program allows you to create and manage macros for keyboard and mouse
 ## License
 
 This project is licensed under the MIT License.
+
+## Ensure Correct Directory Structure
+
+Your project directory should look like this:
+
+    ```bash
+        your_project/
+    ├── src/
+    │   ├── __init__.py
+    │   ├── main.py
+    │   ├── gui.py
+    │   ├── macro_manager.py
+    ├── requirements.txt
+    ├── README.md
+    ```
+
+## Create 'requirements.txt'
+
+Make sure you have a requirements.txt file that lists all necessary dependencies. Here is an example:
+
+    ```
+    pynput
+    keyboard
+    pygetwindow
+    tkinter
+    ```
+
+## Example main.py
+
+Ensure main.py correctly imports the gui module:
+
+    ```
+    from gui import MacroProgram
+
+    if __name__ == "__main__":
+        app = MacroProgram()
+        app.run()
+    ```
+
+## Running the Application
+
+1. Clone the repository:
+
+    - Follow the steps provided in the README to clone the repository.
+
+2. Create and activate a virtual environment:
+
+    - Follow the steps provided in the README to create and activate a virtual environment.
+
+3. Install dependencies:
+
+    - Run pip install -r requirements.txt to install all necessary dependencies.
+
+4. Run the program:
+
+    - Execute python src/main.py to start the application.
+
+# By following these steps, users should be able to set up and run your macro program without any issues. If you need further adjustments or assistance, please let me know!

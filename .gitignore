@@ -217,3 +217,6 @@ venv.bak/
 # Other
 *~ # Temporary file
 *.swp # Swap files
+
+# Custom additions
+macros.json
